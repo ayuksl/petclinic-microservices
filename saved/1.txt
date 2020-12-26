@@ -1,0 +1,26 @@
+Security Group ve Network ACL i kısaca hatırlayalım;
+Network ACL ==>
+Network Access Control Lists
+VPC için Subnet lere giren ve çıkan trafiği kontrol eden bir güvenlik bileşenidir
+Default olarak tüm rules lar Allow dır ancak yeni eklenen NACL ın tüm rule ları Denied durumundadır
+Firewall of subnets
+Hem Inbound hem Outbound lar ayarlanır
+Stateless dır. Yani inbounda eklenen bir kural Outbound a eklenmez
+1 den 32766 e kadar kurallar vardır.
+Yazılan kurallar arasında bir hiyerarşi vardır
+Listenin en üstündeki en düşük numaralı kuralın ayrıcalıkları vardır
+100 numaralı kural listenin en üstündedir ve tüm inbound traffic e izin verildiğini belirtir
+Listenin en altında default olarak "*"" işareti vardır ve tüm trafiği reddeder (denied)
+Kurallar yukarıdan aşağıya yani en küçük sayıdan en yüksek sayıya doğru incelenir
+Tüm kurallar sırasıyla en düşük numaralı kuraldan en yüksek numaralı kurala kadar kontrol edilir
+Bu kurallardan biri pakete uyuyorsa, o kural uygulanır
+Herhangi bir kurala uymazsa paket listenin en altına gider * işrateti paketin geçmesine izin vermez
+Subnet ler sadece 1 Network ACL ile ilişkilendirilebilir
+Security Group ==>
+EC2 lara atanır, intanse base tabanlıdır
+instance lar 1 den fazla secuity group ile ilişkilendirilebilir
+Default olarak inbound rules lar Denied, Outbound rules lar Allow dır
+Virtual Firewall of Instance
+Sadece Inbound ayarlanır
+Statefull dur. Yani inbound'a eklenen bir kural otamatikmen outband'a da eklenir
+Herhangi bir hiyerarşi yoktur
